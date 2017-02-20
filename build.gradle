@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-	compile "etri:event:1.0"
+	childProjects.values().each { compile it }
 }
 
 task sourceJar(type: Jar) {
