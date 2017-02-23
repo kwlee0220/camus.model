@@ -1,5 +1,7 @@
 package camus.user;
 
+import planet.idl.PlanetLocal;
+
 import event.Event;
 import event.EventProperty;
 
@@ -8,6 +10,7 @@ import event.EventProperty;
  * 
  * @author Kang-Woo Lee (ETRI)
  */
+@PlanetLocal
 public interface UserEvent extends Event {
 	public static final String PROP_USER_ID = "userId";
 	

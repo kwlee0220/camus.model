@@ -1,5 +1,7 @@
 package camus.user;
 
+import planet.idl.PlanetLocal;
+
 import event.EventProperty;
 import event.support.EventBuilder;
 
@@ -11,6 +13,7 @@ import event.support.EventBuilder;
  * 
  * @author Kang-Woo Lee (ETRI)
  */
+@PlanetLocal
 public interface UserLocationChanged extends UserEvent {
 	public static final String ID = UserLocationChanged.class.getName();
 	public static final String PROP_FROM_PLACE = "fromPlace";

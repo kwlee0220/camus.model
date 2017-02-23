@@ -1,15 +1,19 @@
 package camus.place;
 
+import planet.idl.PlanetField;
+import planet.idl.PlanetValue;
+
 /**
  * <code>PlaceInfo</code>는 장소 등록 정보를 클래스이다.
  *
  * @author Kang-Woo Lee (ETRI)
  */
+@PlanetValue
 public final class PlaceInfo {
 	/** 장소 식별자 */
-	public String id;
+	@PlanetField(ordinal=0) public String id;
 	/** 장소 이름 */
-	public String name;
+	@PlanetField(ordinal=1) public String name;
 
 	public PlaceInfo() { }
 	public PlaceInfo(String id, String name) {

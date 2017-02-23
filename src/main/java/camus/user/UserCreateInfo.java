@@ -1,15 +1,19 @@
 package camus.user;
 
+import planet.idl.PlanetField;
+import planet.idl.PlanetValue;
+
 /**
  * {@literal UserCreateInfo}는 사용자 컨텍스트 등록소에 추가할 사람 등록 정보를 표현한 클래스이다.
  *
  * @author Kang-Woo Lee (ETRI)
  */
+@PlanetValue
 public final class UserCreateInfo {
 	/** 사용자 식별자 */
-	public String id;
+	@PlanetField(ordinal=0) public String id;
 	/** 사용자 이름 */
-	public String name;
+	@PlanetField(ordinal=1) public String name;
 
 	public UserCreateInfo() { }
 	public UserCreateInfo(String id, String name) {

@@ -217,4 +217,25 @@ public interface Devices {
 	 */
 	public Collection<Device> getDevicesAtOwnerPlace(String ownerId, boolean cover)
 		throws UserNotFoundException;
+	/**
+	 * 주어진 장치가 접속되었음을 장치 등록소에 통보한다.
+	 * 
+	 * @param deviceId	등록될 장치의 식별자.
+	 * @param device	등록될 장치 객체.
+	 * @throws DeviceExistsException	동일 식별자를 갖는 장치가 접속된 경우.
+	 * @throws DeviceNotFoundException 식별자에 해당한는 장치가 등록되어 있지 않은 경우.
+	 * @throws InvalidArgumentException	{@literal deviceId} 또는 {@literal device}가
+	 * 									<code>null</code>인 경우.
+	 */
+	public void onDeviceConnected(String deviceId, Device device)
+		throws DeviceExistsException, DeviceNotFoundException;
+	
+	/**
+	 * 장치 등록소에 등록된 장치 중에서 주어진 식별자에 해당하는 장치를 접속 해제시킨다.
+	 * 지정된 식별자에 해당하는 장치가 없는 경우는 호출은 무시된다.
+	 * 
+	 * @param deviceId	접속 해제시킬 장치의 식별자.
+	 * @throws InvalidArgumentException	{@literal deviceid}가 <code>null</code>인 경우.
+	 */
+	public void onDeviceDisconnected(String deviceId);
 }

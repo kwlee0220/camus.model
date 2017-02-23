@@ -1,6 +1,6 @@
 rootProject.name = 'async'
 
-['utils','event'].each {
+['utils','event','planet'].each {
 	include ":$it"
 	project(":$it").projectDir = file("../$it")
 }

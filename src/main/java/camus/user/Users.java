@@ -2,7 +2,11 @@ package camus.user;
 
 import java.util.Collection;
 
+import planet.InvalidArgumentException;
+
 import camus.place.PlaceNotFoundException;
+
+import event.EventChannel;
 
 
 
@@ -12,7 +16,7 @@ import camus.place.PlaceNotFoundException;
  * 
  * @author Kang-Woo Lee
  */
-public interface Users {
+public interface Users extends EventChannel {
 	public static String ROOT_ID = "root";
 	
 	/**
@@ -110,6 +114,9 @@ public interface Users {
      */
     public void setUserLocation(String userId, String placeId)
     	throws UserNotFoundException, PlaceNotFoundException;
+    
+	public void setUserLeftLocation(String userId, String placeId)
+		throws UserNotFoundException, PlaceNotFoundException;
 	
 //    /**
 //     * 주어진 사용자 이벤트 채널을 통해 이벤트를 발송한다.

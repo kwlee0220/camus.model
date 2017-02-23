@@ -1,5 +1,7 @@
 package camus.place;
 
+import planet.idl.PlanetLocal;
+
 import event.Event;
 import event.EventProperty;
 
@@ -9,6 +11,7 @@ import event.EventProperty;
  * 
  * @author Kang-Woo Lee (ETRI)
  */
+@PlanetLocal
 public interface PlaceEvent extends Event {
 	public static final String PROP_PLACE = "place";
 	

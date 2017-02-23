@@ -1,5 +1,7 @@
 package camus.user;
 
+import planet.idl.PlanetLocal;
+
 import camus.place.PlaceEvent;
 
 import event.support.EventBuilder;
@@ -14,6 +16,7 @@ import event.support.EventBuilder;
  * 
  * @author Kang-Woo Lee (ETRI)
  */
+@PlanetLocal
 public interface UserLeft extends UserEvent, PlaceEvent {
 	public static UserLeft create(String userId, String placeId) {
 		EventBuilder builder = new EventBuilder(UserLeft.class);
