@@ -1,4 +1,4 @@
-package camus.impl;
+package etri.camus;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
-
-import planet.InvalidArgumentException;
 
 import camus.place.PlaceNotFoundException;
 import camus.place.PlaceUtils;
@@ -137,7 +135,7 @@ public class InMemoryUsersImpl implements Users, LoggerSettable, Initializable {
 	public Collection<String> getUserIdsAtPlace(String placeId, boolean cover)
 		throws PlaceNotFoundException {
 		if ( placeId == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "getUserIdsAtPlace(placeId,cover): "
+			throw new IllegalArgumentException(EM_PREFIX + "getUserIdsAtPlace(placeId,cover): "
 												+ "placeId is null");
 		}
 

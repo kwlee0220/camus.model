@@ -2,8 +2,6 @@ package camus.user;
 
 import java.util.Collection;
 
-import planet.InvalidArgumentException;
-
 import camus.place.PlaceNotFoundException;
 
 import event.EventChannel;

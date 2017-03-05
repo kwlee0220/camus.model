@@ -4,6 +4,14 @@ apply plugin: 'maven'
 group = 'etri'
 version = '1.0'
 
+sourceSets {
+	main {
+		java {
+			srcDirs = ['src/api/java', 'src/impl/java']
+		}
+	}
+}
+
 sourceCompatibility = JavaVersion.VERSION_1_8
 [compileJava,compileTestJava]*.options*.encoding = 'UTF-8'
 
@@ -16,7 +24,9 @@ repositories {
 }
 
 dependencies {
-	childProjects.values().each { compile it }
+	compile project(':utils')
+	compile project(':event')
+	compile project(':planet')
 }
 
 task sourceJar(type: Jar) {

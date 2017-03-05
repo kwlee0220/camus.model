@@ -1,4 +1,4 @@
-package camus.impl;
+package etri.camus;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,7 +10,6 @@ import java.util.Set;
 import java.util.concurrent.locks.ReentrantLock;
 
 import planet.DisconnectionHandler;
-import planet.InvalidArgumentException;
 import planet.PlanetUtils;
 import planet.transport.Connection;
 
@@ -99,7 +98,7 @@ public class InMemoryDevicesImpl implements Devices, LoggerSettable, Initializab
 	@Override
 	public DeviceInfo getDeviceInfo(String deviceId) throws DeviceNotFoundException {
 		if ( deviceId == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "getDeviceInfo(deviceId): "
+			throw new IllegalArgumentException(EM_PREFIX + "getDeviceInfo(deviceId): "
 												+ "deviceId is null");
 		}
 		
@@ -142,7 +141,7 @@ public class InMemoryDevicesImpl implements Devices, LoggerSettable, Initializab
 	@Override
 	public Collection<String> getDeviceIdsOfOwner(String ownerId) throws UserNotFoundException {
 		if ( ownerId == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "getDeviceIdsOfOwner(ownerId): "
+			throw new IllegalArgumentException(EM_PREFIX + "getDeviceIdsOfOwner(ownerId): "
 												+ "ownerId is null");
 		}
 		
@@ -167,7 +166,7 @@ public class InMemoryDevicesImpl implements Devices, LoggerSettable, Initializab
 	public Collection<String> getDeviceIdsAtPlace(String placeId, boolean cover)
 		throws PlaceNotFoundException {
 		if ( placeId == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "getDeviceIdsAtPlace(placeId,cover): "
+			throw new IllegalArgumentException(EM_PREFIX + "getDeviceIdsAtPlace(placeId,cover): "
 												+ "placeId is null");
 		}
 		
@@ -187,7 +186,7 @@ public class InMemoryDevicesImpl implements Devices, LoggerSettable, Initializab
 	public Collection<String> getDeviceIdsAtOwnerPlace(String ownerId, boolean cover)
 		throws UserNotFoundException {
 		if ( ownerId == null ) {
-			throw new InvalidArgumentException(EM_PREFIX
+			throw new IllegalArgumentException(EM_PREFIX
 								+ "getDeviceIdsAtOwnerPlace(ownerId,cover): ownerId is null");
 		}
 
@@ -220,11 +219,11 @@ public class InMemoryDevicesImpl implements Devices, LoggerSettable, Initializab
 	public void addDeviceInfo(DeviceInfo info)
 		throws DeviceExistsException, UserNotFoundException, PlaceNotFoundException {
 		if ( info == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "addDeviceInfo(info): "
+			throw new IllegalArgumentException(EM_PREFIX + "addDeviceInfo(info): "
 												+ "info is null");
 		}
 		if ( info.id == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "addDeviceInfo(info): "
+			throw new IllegalArgumentException(EM_PREFIX + "addDeviceInfo(info): "
 												+ "info.id is null");
 		}
 
@@ -254,7 +253,7 @@ public class InMemoryDevicesImpl implements Devices, LoggerSettable, Initializab
 	@Override
 	public boolean removeDeviceInfo(String deviceId) {
 		if ( deviceId == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "removeDeviceInfo(deviceId): "
+			throw new IllegalArgumentException(EM_PREFIX + "removeDeviceInfo(deviceId): "
 												+ "deviceId is null");
 		}
 
@@ -280,7 +279,7 @@ public class InMemoryDevicesImpl implements Devices, LoggerSettable, Initializab
 	public void setDeviceOwner(String deviceId, String ownerId)
 		throws DeviceNotFoundException, UserNotFoundException {
 		if ( deviceId == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "setDeviceOwner(deviceId,ownerId): "
+			throw new IllegalArgumentException(EM_PREFIX + "setDeviceOwner(deviceId,ownerId): "
 												+ "deviceId is null");
 		}
 
@@ -317,7 +316,7 @@ public class InMemoryDevicesImpl implements Devices, LoggerSettable, Initializab
 	public void setDeviceLocation(String deviceId, String placeId)
 		throws DeviceNotFoundException, PlaceNotFoundException {
 		if ( deviceId == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "setDeviceLocation(deviceId,placeId): "
+			throw new IllegalArgumentException(EM_PREFIX + "setDeviceLocation(deviceId,placeId): "
 												+ "deviceId is null");
 		}
 
@@ -353,7 +352,7 @@ public class InMemoryDevicesImpl implements Devices, LoggerSettable, Initializab
 	@Override
 	public Device getDevice(String deviceId) throws DeviceNotFoundException {
 		if ( deviceId == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "getDevice(deviceId): "
+			throw new IllegalArgumentException(EM_PREFIX + "getDevice(deviceId): "
 												+ "deviceId is null");
 		}
 
@@ -375,7 +374,7 @@ public class InMemoryDevicesImpl implements Devices, LoggerSettable, Initializab
 	@Override
 	public Device getDeviceIfConnected(String deviceId) {
 		if ( deviceId == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "getDevice(deviceId): "
+			throw new IllegalArgumentException(EM_PREFIX + "getDevice(deviceId): "
 												+ "deviceId is null");
 		}
 
@@ -417,7 +416,7 @@ public class InMemoryDevicesImpl implements Devices, LoggerSettable, Initializab
 	@Override
 	public Collection<Device> getDevicesOfOwner(String ownerId) throws UserNotFoundException {
 		if ( ownerId == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "getDevicesOfOwner(ownerId): "
+			throw new IllegalArgumentException(EM_PREFIX + "getDevicesOfOwner(ownerId): "
 												+ "ownerId is null");
 		}
 		
@@ -434,7 +433,7 @@ public class InMemoryDevicesImpl implements Devices, LoggerSettable, Initializab
 	public Collection<Device> getDevicesAtPlace(String placeId, boolean cover)
 		throws PlaceNotFoundException {
 		if ( placeId == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "getDevicesAtPlace(placeId,cover): "
+			throw new IllegalArgumentException(EM_PREFIX + "getDevicesAtPlace(placeId,cover): "
 												+ "placeId is null");
 		}
 		
@@ -451,7 +450,7 @@ public class InMemoryDevicesImpl implements Devices, LoggerSettable, Initializab
 	public Collection<Device> getDevicesAtOwnerPlace(String ownerId, boolean cover)
 			throws UserNotFoundException {
 		if ( ownerId == null ) {
-			throw new InvalidArgumentException(EM_PREFIX
+			throw new IllegalArgumentException(EM_PREFIX
 									+ "getDevicesAtOwnerPlace(ownerId,cover): userId is null");
 		}
 		
@@ -468,11 +467,11 @@ public class InMemoryDevicesImpl implements Devices, LoggerSettable, Initializab
 	public void onDeviceConnected(String deviceId, Device device)
 		throws DeviceExistsException, DeviceNotFoundException {
 		if ( deviceId == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "onDeviceConnected(deviceId,device): "
+			throw new IllegalArgumentException(EM_PREFIX + "onDeviceConnected(deviceId,device): "
 												+ "deviceId is null");
 		}
 		if ( device == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "onDeviceConnected(deviceId,device): "
+			throw new IllegalArgumentException(EM_PREFIX + "onDeviceConnected(deviceId,device): "
 												+ "device is null");
 		}
 		
@@ -506,7 +505,7 @@ public class InMemoryDevicesImpl implements Devices, LoggerSettable, Initializab
 	@Override
 	public void onDeviceDisconnected(String deviceId) {
 		if ( deviceId == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "onDeviceDisconnected(deviceId): "
+			throw new IllegalArgumentException(EM_PREFIX + "onDeviceDisconnected(deviceId): "
 												+ "deviceId is null");
 		}
 
@@ -563,7 +562,7 @@ public class InMemoryDevicesImpl implements Devices, LoggerSettable, Initializab
 	Collection<String> getDeviceIdsAtPlaceInGuard(String placeId, boolean cover, String errMsgPrefix)
 		throws PlaceNotFoundException {
 		if ( placeId == null ) {
-			throw new InvalidArgumentException(errMsgPrefix + "placeId is null");
+			throw new IllegalArgumentException(errMsgPrefix + "placeId is null");
 		}
 		
 		m_places.getPlaceInfoInGuard(placeId, errMsgPrefix);

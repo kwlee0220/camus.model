@@ -1,12 +1,10 @@
-package camus.impl;
+package etri.camus;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
-
-import planet.InvalidArgumentException;
 
 import camus.place.PlaceEvent;
 import camus.place.PlaceExistsException;
@@ -98,7 +96,7 @@ public class InMemoryPlacesImpl implements Places, LoggerSettable, Initializable
 	@Override
     public PlaceInfo getPlaceInfo(String placeId) throws PlaceNotFoundException {
 		if ( placeId == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "getPlaceInfo(placeId): "
+			throw new IllegalArgumentException(EM_PREFIX + "getPlaceInfo(placeId): "
 												+ "placeId is null");
 		}
 		
@@ -120,7 +118,7 @@ public class InMemoryPlacesImpl implements Places, LoggerSettable, Initializable
 	@Override
 	public boolean existsPlaceInfo(String placeId) {
 		if ( placeId == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "existsPlaceInfo(placeId): "
+			throw new IllegalArgumentException(EM_PREFIX + "existsPlaceInfo(placeId): "
 												+ "placeId is null");
 		}
 		
@@ -168,7 +166,7 @@ public class InMemoryPlacesImpl implements Places, LoggerSettable, Initializable
     public Collection<String> getSubPlaceIds(String placeId, boolean cover)
 		throws PlaceNotFoundException {
 		if ( placeId == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "getSubPlaceIds(placeId, cover): "
+			throw new IllegalArgumentException(EM_PREFIX + "getSubPlaceIds(placeId, cover): "
 												+ "placeId is null");
 		}
 		
@@ -205,7 +203,7 @@ public class InMemoryPlacesImpl implements Places, LoggerSettable, Initializable
 	@Override
 	public boolean isLeafPlaceInfo(String placeId) {
 		if ( placeId == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "isLeafPlaceInfo(placeId): "
+			throw new IllegalArgumentException(EM_PREFIX + "isLeafPlaceInfo(placeId): "
 												+ "placeId is null");
 		}
 
@@ -228,11 +226,11 @@ public class InMemoryPlacesImpl implements Places, LoggerSettable, Initializable
 	@Override
 	public void addPlaceInfo(PlaceInfo info) throws PlaceExistsException, PlaceNotFoundException {
 		if ( info == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "addPlaceInfo(info): "
+			throw new IllegalArgumentException(EM_PREFIX + "addPlaceInfo(info): "
 											+ "info is null");
 		}
 		if ( info.id == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "addPlaceInfo(info): "
+			throw new IllegalArgumentException(EM_PREFIX + "addPlaceInfo(info): "
 											+ "info.id is null");
 		}
 		
@@ -265,11 +263,11 @@ public class InMemoryPlacesImpl implements Places, LoggerSettable, Initializable
 	@Override
 	public boolean removePlaceInfo(String placeId) throws PlaceNotFoundException {
 		if ( placeId == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "removePlaceInfo(placeId): "
+			throw new IllegalArgumentException(EM_PREFIX + "removePlaceInfo(placeId): "
 												+ "placeId is null");
 		}
         else if ( placeId.equals(ROOT_PLACE_ID) ) {
-			throw new InvalidArgumentException(EM_PREFIX + "removePlaceInfo(placeId): "
+			throw new IllegalArgumentException(EM_PREFIX + "removePlaceInfo(placeId): "
 												+ "Cannot delete root location");
         }
 
@@ -301,11 +299,11 @@ public class InMemoryPlacesImpl implements Places, LoggerSettable, Initializable
 	@Override
 	public void updatePlaceInfo(PlaceInfo info) throws PlaceNotFoundException {
 		if ( info == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "updatePlaceInfo(info): "
+			throw new IllegalArgumentException(EM_PREFIX + "updatePlaceInfo(info): "
 											+ "info is null");
 		}
 		if ( info.id == null ) {
-			throw new InvalidArgumentException(EM_PREFIX + "updatePlaceInfo(info): "
+			throw new IllegalArgumentException(EM_PREFIX + "updatePlaceInfo(info): "
 											+ "info.id is null");
 		}
 		
@@ -389,7 +387,7 @@ public class InMemoryPlacesImpl implements Places, LoggerSettable, Initializable
     
 	PlaceInfo getPlaceInfoInGuard(String placeId, String errMsgPrefix) throws PlaceNotFoundException {
 		if ( placeId == null ) {
-			throw new InvalidArgumentException(errMsgPrefix + "null");
+			throw new IllegalArgumentException(errMsgPrefix + "null");
 		}
 		
 		PlaceInfo info = m_infos.get(placeId);
