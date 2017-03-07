@@ -81,9 +81,7 @@ public class InMemoryDevicesImpl implements Devices, LoggerSettable, Initializab
 			Utilities.setLogger(this, orgLogger);
 		}
 		
-		if ( s_logger.isInfoEnabled() ) {
-	    	s_logger.info("initialized: " + getClass().getSimpleName() + "...");
-		}
+	    s_logger.info("initialized: {}...", getClass().getSimpleName());
 	}
 	@Override public void destroy() throws Exception { }
     

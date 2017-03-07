@@ -271,6 +271,7 @@ public class InMemoryPlacesImpl implements Places, LoggerSettable, Initializable
 												+ "Cannot delete root location");
         }
 
+		m_users.lock();
 		m_lock.lock();
 		try {
 			PlaceInfo place = m_infos.get(placeId);
@@ -285,14 +286,13 @@ public class InMemoryPlacesImpl implements Places, LoggerSettable, Initializable
 				removePlaceInGuard(subPlcId, parentPlcId);
 			}
 			
-			if ( m_logger.isInfoEnabled() ) {
-				m_logger.info("removed:Place: id=" + placeId + "]");
-			}
+			m_logger.info("removed:Place: id={}", placeId);
 			
 			return true;
 		}
 		finally {
 			m_lock.unlock();
+			m_users.unlock();
 		}
 	}
 
@@ -417,8 +417,6 @@ public class InMemoryPlacesImpl implements Places, LoggerSettable, Initializable
         	}
 		}
 		
-		if ( m_logger.isDebugEnabled() ) {
-			m_logger.debug("removed:Place: id=" + placeId + "]");
-		}
+		m_logger.debug("removed:Place: id={}", placeId);
 	}
 }

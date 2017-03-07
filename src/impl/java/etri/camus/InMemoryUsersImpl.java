@@ -1,6 +1,5 @@
 package etri.camus;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -407,10 +406,8 @@ public class InMemoryUsersImpl implements Users, LoggerSettable, Initializable {
 
 		// 비정상적인 위치 설정은 필터링한다.
 		if ( info.place.equals(placeId) ) {
-			if ( getLogger().isDebugEnabled() ) {
-				getLogger().debug(String.format("ignored invalid location setting: user(%s) left the place(%s)",
-												userId, placeId));
-			}
+			getLogger().debug("[ignored] invalid location setting: user({}) left the place({})",
+								userId, placeId);
 			return;
 		}
 		
@@ -420,10 +417,9 @@ public class InMemoryUsersImpl implements Users, LoggerSettable, Initializable {
 		// 현재 장소에서 최소 공동 조상 장소 바로 전까지 나간다.
 		for ( String pid = info.place; !pid.equals(ancestorId);
 			pid = Places.getDirectSuperPlaceId(pid) ) {
+			
 			UserLeft ul = UserLeft.create(userId, pid);
-			if ( getLogger().isDebugEnabled() ) {
-				getLogger().debug("publishing event: " + ul);
-			}
+			getLogger().debug("publishing event: {}", ul);
 			m_channel.publishEvent(ul);
 		}
 		
@@ -432,39 +428,24 @@ public class InMemoryUsersImpl implements Users, LoggerSettable, Initializable {
 		String pid = ancestorId;
 		for ( String name: downPath ) {
 			pid = PlaceUtils.formChildPlaceId(pid, name);
-			
+
 			UserEntered ue = UserEntered.create(userId, pid);
-			if ( getLogger().isDebugEnabled() ) {
-				getLogger().debug("publishing event: " + ue);
-			}
+			getLogger().debug("publishing event: {}", ue);
 			m_channel.publishEvent(ue);
 		}
 		
 		info.place = placeId;
 		
 		UserLocationChanged ulc = UserLocationChanged.create(userId, prevLoc, placeId);
-		if ( getLogger().isInfoEnabled() ) {
-			getLogger().info("publishing event: " + ulc);
-		}
+		getLogger().info("publishing event: {}", ulc);
 		m_channel.publishEvent(ulc);
 	}
 	
-	Collection<String> getUserIdAllAtPlaceInGuard(String placeId) {
-		List<String> idList = new ArrayList<String>();
-		
-    	m_lock.lock();
-    	try {
-    		for ( UserInfo info: m_infos.values() ) {
-    			if ( info.place.equals(placeId) ) {
-    				idList.add(info.id);
-    			}
-    		}
-    		
-    		return idList;
-        }
-		finally {
-			m_lock.unlock();
-		}
+	Collection<String> getUserIdAllAtPlaceInGuard(final String placeId) {
+		return m_infos.values().parallelStream()
+					.filter(info -> info.place.equals(placeId))
+					.map(info -> info.id)
+					.collect(Collectors.toList());
 	}
 	
 	private boolean isResident(UserInfo user, String placeId, boolean cover) {
