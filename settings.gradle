@@ -1,6 +1,6 @@
-rootProject.name = 'async'
+rootProject.name = 'camus.model'
 
 ['utils','event','planet'].each {
 	include ":$it"
-	project(":$it").projectDir = file("../$it")
+	project(":$it").projectDir = file("../../github/$it")
 }
