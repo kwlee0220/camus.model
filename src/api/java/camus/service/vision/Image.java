@@ -2,6 +2,7 @@ package camus.service.vision;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -79,7 +80,9 @@ public final class Image {
 	}
 	
 	public static Image toJpegImage(File file, float jpegQuality) throws IOException {
-		return toJpegImage(ImageUtils.toBufferedImage(file), jpegQuality);
+		try ( InputStream is = new FileInputStream(file) ) {
+			return toJpegImage(ImageUtils.toBufferedImage(is), jpegQuality);
+		}
 	}
 	
 	public static Image toJpegImage(BufferedImage bimage, float jpegQuality) {

@@ -2,5 +2,5 @@ rootProject.name = 'camus.model'
 
 ['utils','event','planet'].each {
 	include ":$it"
-	project(":$it").projectDir = file("../../github/$it")
+	project(":$it").projectDir = file("../../common/$it")
 }
