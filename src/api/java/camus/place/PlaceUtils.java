@@ -4,8 +4,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import com.google.common.collect.Iterables;
-
 import utils.CSV;
 
 
@@ -39,7 +37,7 @@ public class PlaceUtils {
             path = path.substring(1);
         }
         
-        return CSV.get().withDelimiter(DELIM).withEscape(ESC).parse(path);
+        return CSV.parseCsv(path, DELIM, ESC).toList();
     }
     
     public static String getLastNodeName(String placeId) {
@@ -47,10 +45,7 @@ public class PlaceUtils {
             return "/";
         }
         else {
-        	return Iterables.getLast(CSV.get()
-        								.withDelimiter(DELIM)
-        								.withEscape(ESC)
-        								.parse(placeId));
+        	return CSV.parseCsv(placeId, DELIM, ESC).last().get();
         }
     }
     
@@ -79,7 +74,7 @@ public class PlaceUtils {
     	if ( diff.charAt(0) == '/' ) {
     		diff = diff.substring(1);
     	}
-    	return CSV.get().withDelimiter(DELIM).withEscape(ESC).parse(diff);
+    	return CSV.parseCsv(diff, DELIM, ESC).toList();
     }
     
     public static String toPath(Collection<String> nodeList) {

@@ -179,10 +179,10 @@ public class InMemoryPlacesImpl implements Places, LoggerSettable, Initializable
 												+ "placeId=" + placeId);
 			}
 
-			int depth = CSV.parse(placeId, '/', '\\').size();
+			int depth = (int)CSV.parseCsv(placeId, '/', '\\').count();
 			for ( String id : m_infos.keySet() ) {
 				if ( !id.equals(placeId) && id.startsWith(placeId) ) {
-					if ( cover || CSV.parse(placeId, '/', '\\').size() == depth+1 ) {
+					if ( cover || CSV.parseCsv(placeId, '/', '\\').count() == depth+1 ) {
 						placeIdList.add(id);
 					}
 				}
