@@ -45,7 +45,7 @@ public class PlaceUtils {
             return "/";
         }
         else {
-        	return CSV.parseCsv(placeId, DELIM, ESC).last().get();
+        	return CSV.parseCsv(placeId, DELIM, ESC).findLast().get();
         }
     }
     
