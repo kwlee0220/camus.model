@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 
+import javax.annotation.concurrent.GuardedBy;
+
 import camus.place.PlaceNotFoundException;
 import camus.place.PlaceUtils;
 import camus.place.Places;
@@ -28,7 +30,6 @@ import event.Event;
 import event.EventChannel;
 import event.EventSubscriber;
 import event.support.EventChannelImpl;
-import net.jcip.annotations.GuardedBy;
 import utils.Initializable;
 import utils.LoggerSettable;
 import utils.Utilities;

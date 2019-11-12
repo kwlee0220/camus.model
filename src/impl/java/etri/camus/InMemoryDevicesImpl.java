@@ -9,6 +9,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.locks.ReentrantLock;
 
+import javax.annotation.concurrent.GuardedBy;
+
 import planet.DisconnectionHandler;
 import planet.PlanetUtils;
 import planet.transport.Connection;
@@ -33,7 +35,6 @@ import org.slf4j.LoggerFactory;
 import event.EventChannel;
 import event.support.EventBuilder;
 import event.support.EventChannelImpl;
-import net.jcip.annotations.GuardedBy;
 import utils.Initializable;
 import utils.LoggerSettable;
 import utils.Utilities;

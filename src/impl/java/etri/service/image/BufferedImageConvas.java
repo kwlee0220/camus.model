@@ -6,6 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 
+import javax.annotation.concurrent.GuardedBy;
+
 import camus.service.geo.Point;
 import camus.service.geo.Polygon;
 import camus.service.geo.Rectangle;
@@ -14,7 +16,6 @@ import camus.service.image.Color;
 import camus.service.image.ImageConvas;
 import camus.service.vision.Image;
 
-import net.jcip.annotations.GuardedBy;
 import utils.swing.ImageUtils;
 
 

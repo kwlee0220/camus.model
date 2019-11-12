@@ -15,6 +15,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 
+import javax.annotation.concurrent.GuardedBy;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -28,7 +29,6 @@ import camus.service.image.ImageConvas;
 import camus.service.image.ImageView;
 import camus.service.vision.Image;
 
-import net.jcip.annotations.GuardedBy;
 import utils.Initializable;
 import utils.swing.SwingUtils;
 
